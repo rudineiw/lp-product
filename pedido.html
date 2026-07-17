@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resumo do Pedido - Mystery Product</title>
+    <title>Finalizar Pedido - Mystery Product</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,53 +13,71 @@
     </header>
 
     <main class="container">
-        <!-- Summary Section -->
-        <section class="card" id="orderSummaryCard">
-            <h3>Resumo do Pedido</h3>
-            <p class="card-subtitle">Confira os dados do seu pedido antes da finalização.</p>
-
-            <div id="summaryGrid" class="summary-grid">
-                <div id="summaryContent">
-                    <div class="form-group">
-                        <label>Nome:</label>
-                        <p id="summaryName"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>E-mail:</label>
-                        <p id="summaryEmail"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Endereço:</label>
-                        <p id="summaryAddress"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Bairro:</label>
-                        <p id="summaryNeighborhood"></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Cidade / UF:</label>
-                        <p id="summaryCity"></p>
-                    </div>
+        <section class="checkout-section">
+            
+            <!-- ETAPA 1: Calculadora de Frete (Apresentada primeiro) -->
+            <div id="shippingCard" class="card">
+                <h3>Calcular Frete e Prazo</h3>
+                <p class="card-subtitle">Insira seu CEP para verificar a disponibilidade de entrega.</p>
+                
+                <div class="form-group inline-group">
+                    <input type="text" id="cep" maxlength="8" placeholder="Digite seu CEP (apenas números)" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
+                    <button id="btnCalcShipping" class="btn-secondary">Calcular</button>
                 </div>
+                <span id="cepError" class="error-msg"></span>
 
-                <div class="summary-image">
-                    <img src="img/caixa-surpresa.png" alt="Produto: MysteryProduct">
-                </div>
-
-                <div class="shipping-box">
-                    <h4>Valores do Pedido</h4>
-                    <p><strong>Valor do Produto:</strong> <span id="summaryProductValue"></span></p>
-                    <p><strong>Valor do Frete:</strong> <span id="summaryShippingValue"></span></p>
-                    <p><strong>Prazo de Entrega:</strong> <span id="summaryShippingDays"></span></p>
-                    <p><strong>Total:</strong> <span id="summaryTotalValue"></span></p>
+                <!-- Resultado do Frete (Oculto até o cálculo) -->
+                <div id="shippingResult" class="shipping-box hidden">
+                    <h4>Opção de entrega para sua região:</h4>
+                    <p><strong>Modalidade:</strong> Entrega Padrão</p>
+                    <p><strong>Produto:</strong> <span id="productValue">R$ 197,00</span></p>
+                    <p><strong>Valor do Frete:</strong> <span id="shippingValue">R$ 0,00</span></p>
+                    <p><strong>Total (Frete + Produto):</strong> <span id="totalValue">R$ 197,00</span></p>
+                    <p><strong>Prazo:</strong> <span id="shippingTime">X dias úteis</span></p>
                 </div>
             </div>
 
-            <div id="emptyMessage" class="hidden">
-                <p>Não há pedido registrado. Volte para a página inicial e realize uma simulação de frete antes de finalizar.</p>
+            <!-- ETAPA 2: Dados Pessoais e Endereço (Oculto por padrão, exibe após CEP válido) -->
+            <div id="checkoutCard" class="card hidden">
+                <h3>Dados do Comprador e Entrega</h3>
+                <form id="orderForm">
+                    
+                    <div class="form-group">
+                        <label for="name">Nome completo</label>
+                        <input type="text" id="name" required placeholder="Digite seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required placeholder="seu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Endereço (Rua, Av.)</label>
+                        <input type="text" id="address" required placeholder="Digite seu endereço">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neighborhood">Bairro</label>
+                        <input type="text" id="neighborhood" required placeholder="Digite o bairro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Cidade / UF</label>
+                        <input type="text" id="city" readonly placeholder="Cidade / Estado">
+                    </div>
+
+                    <button type="submit" class="btn-success">Confirmar Pedido</button>
+                </form>
             </div>
 
-            <button id="backToHome" class="btn-secondary mt-20">Voltar para Loja</button>
+            <!-- Feedback de Sucesso Final -->
+            <div id="feedbackMessage" class="hidden">
+                <h4>Pedido Confirmado!</h4>
+                <p>Obrigado pelo interesse. Entraremos em contato via e-mail em breve.</p>
+                <button id="backToHome" class="btn-secondary mt-20" style="width: 100%;">Voltar para a Home</button>
+            </div>
+
         </section>
     </main>
 

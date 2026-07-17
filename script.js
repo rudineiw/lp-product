@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleção de elementos das etapas
+    // Verificar se estamos na página de pedido (evita erros se carregar na index)
     const shippingCard = document.getElementById('shippingCard');
+    if (!shippingCard) return;
+
+    // Seleção de elementos
     const checkoutCard = document.getElementById('checkoutCard');
     const orderForm = document.getElementById('orderForm');
     const feedbackMessage = document.getElementById('feedbackMessage');
@@ -13,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const shippingValue = document.getElementById('shippingValue');
     const totalValue = document.getElementById('totalValue');
     const shippingTime = document.getElementById('shippingTime');
-    const btnProceedToCheckout = document.getElementById('btnProceedToCheckout');
 
     // Inputs do formulário final
     const nameInput = document.getElementById('name');
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cep = cepInput.value.replace(/\D/g, '');
         cepError.textContent = '';
         shippingResult.classList.add('hidden');
-        checkoutCard.classList.add('hidden'); // Oculta o checkout caso mude de CEP
+        checkoutCard.classList.add('hidden'); // Oculta caso o usuário mude para um CEP inválido depois
 
         if (cep.length !== 8) {
             cepError.textContent = 'O CEP deve conter exatamente 8 números.';
@@ -57,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Guarda temporariamente os dados para a próxima etapa
+            // Preenche automaticamente os dados vindos do ViaCEP
             addressInput.value = data.logradouro || '';
             neighborhoodInput.value = data.bairro || '';
             cityInput.value = `${data.localidade} / ${data.uf}`;
@@ -69,12 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
             totalValue.textContent = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             shippingTime.textContent = `${rule.days} dias úteis`;
 
-            // Mostra o resultado da simulação
+            // Mostra o resultado da simulação e armazena os valores
             shippingResult.classList.remove('hidden');
-
-            // Armazena o valor de frete atual para o checkout
             shippingResult.dataset.shippingPrice = rule.price;
             shippingResult.dataset.shippingDays = rule.days;
+
+            // NOVA LÓGICA: Exibe o formulário de dados restantes automaticamente após o CEP válido
+            checkoutCard.classList.remove('hidden');
+            
+            // Foco inteligente nos campos
+            if (!nameInput.value) {
+                nameInput.focus();
+            } else if (!addressInput.value) {
+                addressInput.focus();
+            } else {
+                document.getElementById('email').focus();
+            }
 
         } catch (error) {
             cepError.textContent = 'Erro ao consultar o CEP. Tente novamente.';
@@ -86,20 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCalcShipping.addEventListener('click', handleShippingCalculation);
     cepInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleShippingCalculation();
-    });
-
-    // ETAPA 2: Ao clicar em "Comprar Agora", revela o formulário de dados cadastrais
-    btnProceedToCheckout.addEventListener('click', () => {
-        checkoutCard.classList.remove('hidden');
-        checkoutCard.scrollIntoView({ behavior: 'smooth' });
-        
-        if (!nameInput.value) {
-            nameInput.focus(); // Se não digitou o nome ainda, começa por aqui
-        } else if (!addressInput.value) {
-            addressInput.focus(); // Se o nome já existe mas a rua veio vazia (CEP geral), foca na rua
-        } else {
-            document.getElementById('email').focus(); // Caso contrário, vai para o e-mail
-        }
     });
 
     // Envio do pedido completo
@@ -122,32 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
             totalPrice
         };
 
+        // Salva localmente caso precise do dado depois
         localStorage.setItem('mysteryProductOrder', JSON.stringify(orderData));
-        window.location.href = 'pedido.html';
+
+        // Esconde os cards de preenchimento e exibe a mensagem de sucesso na tela
+        shippingCard.classList.add('hidden');
+        checkoutCard.classList.add('hidden');
+        feedbackMessage.classList.remove('hidden');
     });
-});
 
-// Dados do pedido página pedido.html
-const getOrderData = JSON.parse(localStorage.getItem('mysteryProductOrder') || 'null');
-
-const summaryGrid = document.getElementById('summaryGrid');
-const emptyMessage = document.getElementById('emptyMessage');
-
-if (!getOrderData) {
-    summaryGrid.classList.add('hidden');
-    emptyMessage.classList.remove('hidden');
-} else {
-    document.getElementById('summaryName').textContent = getOrderData.name;
-    document.getElementById('summaryEmail').textContent = getOrderData.email;
-    document.getElementById('summaryAddress').textContent = getOrderData.address;
-    document.getElementById('summaryNeighborhood').textContent = getOrderData.neighborhood;
-    document.getElementById('summaryCity').textContent = getOrderData.city;
-    document.getElementById('summaryProductValue').textContent = getOrderData.productPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById('summaryShippingValue').textContent = getOrderData.shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    document.getElementById('summaryShippingDays').textContent = getOrderData.shippingDays === 'N/A' ? 'Informação indisponível' : `${getOrderData.shippingDays} dias úteis`;
-    document.getElementById('summaryTotalValue').textContent = getOrderData.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-document.getElementById('backToHome').addEventListener('click', () => {
-    window.location.href = 'index.html';
+    // Botão de retorno após a mensagem de sucesso
+    document.getElementById('backToHome').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
 });
