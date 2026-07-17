@@ -4,8 +4,8 @@
 Desenvolver um site simples utilizando HTML, CSS e JavaScript.
 
 ## CONTEÚDO MÍNIMO DA LANDING PAGE:
-- Configure um repositório Git para o projeto.
-- Crie duas branches: uma principal (main) e outra de desenvolvimento (develop).
+~~ Configure um repositório Git para o projeto. ~~
+~~ Crie duas branches: uma principal (main) e outra de desenvolvimento (develop). ~~
 - Um cabeçalho com o nome do projeto.
 - Uma breve descrição ou slogan.
 - Um botão de chamada para ação como "Saiba Mais" ou "Inscreva-se".

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Product - O Futuro na sua Mão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">Mystery Product</h1>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>O futuro é uma surpresa! Você está pronto para abrir?</h2>
+            <img src="img/caixa-surpresa.png" width="350" alt="Mystery Product">
+            <p class="hero-price">R$ 197,00</p>
+            <p>O <strong>Mystery Product</strong> não é apenas mais um gadget na sua mesa; é a resposta para a sua busca por inovação. Nós combinamos tecnologia, design minimalista e uma pitada de mistério para entregar exatamente o que a sua rotina precisa, mesmo que você ainda não saiba o que é.</p>
+            <p>Deixe a previsibilidade de lado. Abra a caixa, transforme o seu dia a dia e descubra o próximo nível da tecnologia prática.</p>
+        </section>
+
+        <!-- Seção de Compra e Checkout -->
+        <section class="checkout-section">
+            
+            <!-- ETAPA 1: Calculadora de Frete -->
+            <div id="shippingCard" class="card">
+                <h3>Calcular Frete e Prazo</h3>
+                <p class="card-subtitle">Insira seu CEP para verificar a disponibilidade de entrega.</p>
+                
+                <div class="form-group inline-group">
+                    <input type="text" id="cep" maxlength="8" placeholder="Digite seu CEP (apenas números)">
+                    <button id="btnCalcShipping" class="btn-secondary">Calcular</button>
+                </div>
+                <span id="cepError" class="error-msg"></span>
+
+                <!-- Resultado do Frete (Oculto até o cálculo) -->
+                <div id="shippingResult" class="shipping-box hidden">
+                    <h4>Opção de entrega para sua região:</h4>
+                    <p><strong>Modalidade:</strong> Entrega Padrão</p>
+                    <p><strong>Produto:</strong> <span id="productValue">R$ 197,00</span></p>
+                    <p><strong>Valor do Frete:</strong> <span id="shippingValue">R$ 0,00</span></p>
+                    <p><strong>Prazo:</strong> <span id="shippingTime">X dias úteis</span></p>
+                    
+                    <button id="btnProceedToCheckout" class="btn-success">Comprar</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 2: Dados Pessoais e Endereço (Oculto por padrão) -->
+            <div id="checkoutCard" class="card hidden">
+                <h3>Finalizar seu Pedido</h3>
+                <form id="orderForm">
+                    
+                    <div class="form-group">
+                        <label for="name">Nome completo</label>
+                        <input type="text" id="name" required placeholder="Digite seu nome">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" required placeholder="seu@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Endereço (Rua, Av.)</label>
+                        <input type="text" id="address" required placeholder="Digite seu endereço">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="neighborhood">Bairro</label>
+                        <input type="text" id="neighborhood" required placeholder="Digite o bairro">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Cidade / UF</label>
+                        <input type="text" id="city" readonly placeholder="Cidade / Estado">
+                    </div>
+
+                    <button type="submit" class="btn-success">Confirmar Pedido</button>
+                </form>
+            </div>
+
+            <!-- Feedback de Sucesso Final -->
+            <div id="feedbackMessage" class="hidden">
+                <h4>Pedido Confirmado!</h4>
+                <p>Obrigado pelo interesse. Entraremos em contato via e-mail em breve.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 MysteryProduct. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
