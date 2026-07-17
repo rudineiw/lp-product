@@ -1,4 +1,4 @@
-/* Reset e Estrutura Geral */
+/* RESET & CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -14,21 +14,6 @@ body {
     min-height: 100vh;
 }
 
-.header { 
-    background-color: #1e293b; 
-    color: #fff; 
-    padding: 1.5rem; 
-    text-align: center; 
-}
-
-.footer { 
-    background-color: #1e293b; 
-    color: #94a3b8; 
-    text-align: center; 
-    padding: 1rem; 
-    margin-top: auto; 
-}
-
 .container { 
     max-width: 800px; 
     margin: 2rem auto; 
@@ -36,33 +21,8 @@ body {
     width: 100%; 
 }
 
-.hero { 
-    text-align: center; 
-    margin-bottom: 3rem; 
-}
-.hero h2 { 
-    font-size: 2.2rem; 
-    color: #0f172a; 
-    margin-bottom: 0.5rem; 
-}
-.hero img {
-     padding: 1.5rem; 
-    }
-.hero p { 
-    font-size: 1.2rem; 
-    color: #64748b; 
-    margin-bottom: 1.5rem; 
-    text-align: left; 
-}
-p.hero-price { 
-    font-size: 2rem; 
-    color: #2563eb; 
-    font-weight: 700;
-    margin-bottom: 1rem; 
-    text-align: center; 
-}
 
-/* Cards */
+/* COMPONENTES ESTRUTURAIS (BOXES & CARDS) */
 .card {
     background: #fff;
     padding: 2rem;
@@ -70,27 +30,37 @@ p.hero-price {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
 }
+.card h3 { color: #1e293b; margin-bottom: 0.5rem; }
+.card h5 { color: #1e293b; font-size: 1.1rem; margin-bottom: 1rem; font-weight: bold; }
+.card-subtitle { color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-.card h3 { 
-    color: #1e293b; 
-    margin-bottom: 0.5rem; 
+/* Box de Destaque / Informação (Fretes, Resumos, Alertas) */
+.shipping-box {
+    background-color: #f8fafc;
+    border: 1px dashed #3b82f6;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
 }
-.card-subtitle { 
-    color: #64748b; 
-    font-size: 0.95rem; 
-    margin-bottom: 1.5rem; 
-}
+.shipping-box h4 { color: #1e293b; margin-bottom: 0.5rem; }
+.shipping-box h5 { color: #1e293b; font-size: 1.1rem; margin-bottom: 1rem; font-weight: bold; }
+.shipping-box p { font-size: 0.95rem; color: #475569; margin-bottom: 0.4rem; }
+.shipping-box span { font-weight: 500; }
 
-/* Grupo de formulário em linha (CEP + Botão) */
-.inline-group {
-    display: flex;
-    gap: 0.5rem;
+/* Box de sucesso */
+.feedback-success {
+    background-color: #ecfdf5; 
+    border: 1px solid #a7f3d0; 
+    color: #065f46;
 }
+.feedback-success h4 { font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center; }
+.feedback-success .feedback-subtitle { text-align: center; margin-bottom: 1.5rem; color: #065f46; }
 
-.inline-group input { 
-    flex: 1; 
-}
+.feedback-success .card { margin-bottom: 0; padding: 1.5rem; box-shadow: none; border: 1px solid #cbd5e1; color: #333; }
+.feedback-success .shipping-box { margin-top: 0; background-color: #fff; border-style: solid; color: #333; }
 
+
+/* FORMULÁRIOS & ENTRADAS DE DADOS */
 .form-group { 
     margin-bottom: 1.2rem; 
 }
@@ -101,24 +71,34 @@ p.hero-price {
     font-size: 0.9rem; 
     color: #475569; 
 }
+.form-group p { font-size: 0.95rem; }
 
-input {
+.inline-group {
+    display: flex;
+    gap: 0.5rem;
+}
+.inline-group input { flex: 1; }
+
+input, textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 1rem;
     background-color: #fff;
+    font-family: inherit;
 }
-
-input[readonly] { 
-    background-color: #f1f5f9; 
-    color: #64748b; 
-    cursor: not-allowed; 
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
+input[readonly] { background-color: #f1f5f9; color: #64748b; cursor: not-allowed; }
+textarea { resize: vertical; }
 
-/* Botões */
-button {
+
+/* 4. BOTÕES */
+button, .btn-primary {
     padding: 0.85rem;
     border: none;
     border-radius: 6px;
@@ -126,54 +106,26 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s ease;
+    text-align: center;
 }
 
-.btn-primary { 
-    background-color: #2563eb; color: white; width: auto; padding: 0.85rem 2rem; 
-}
-.btn-primary:hover { 
-    background-color: #1d4ed8; 
-}
+.btn-primary { background-color: #2563eb; color: white; width: auto; padding: 0.85rem 2rem; text-decoration: none; display: inline-block; }
+.btn-primary:hover { background-color: #1d4ed8; }
 
-.btn-secondary { 
-    background-color: #475569; 
-    color: white; 
-    white-space: nowrap; 
-}
-.btn-secondary:hover { 
-    background-color: #334155; 
-}
+.btn-secondary { background-color: #475569; color: white; white-space: nowrap; }
+.btn-secondary:hover { background-color: #334155; }
 
-.btn-success { 
-    background-color: #10b981; 
-    color: white; 
-    width: 100%; 
-    margin-top: 1rem; 
-}
-.btn-success:hover {
-    background-color: #059669; 
-}
+.btn-success { background-color: #10b981; color: white; width: 100%; margin-top: 1rem; }
+.btn-success:hover { background-color: #059669; }
 
-/* Caixa de Frete */
-.shipping-box {
-    background-color: #f8fafc;
-    border: 1px dashed #3b82f6;
-    padding: 1.5rem;
-    border-radius: 6px;
-    margin-top: 1.5rem;
-}
-.shipping-box h4 { 
-    color: #1e293b; 
-    margin-bottom: 0.5rem;
- }
-.shipping-box p { 
-    font-size: 0.95rem; 
-    color: #475569; 
-    margin-bottom: 0.4rem; 
-}
-#shippingValue { 
-    color: #10b981; 
-}
+
+/* LAYOUT DE ELEMENTOS (HEADERS, FOOTERS E GRIDS) */
+.header { background-color: #1e293b; color: #fff; padding: 2rem; text-align: center; }
+.footer { background-color: #1e293b; color: #94a3b8; text-align: center; padding: 1rem; margin-top: auto; }
+.footer p { margin: 0.5rem 0; line-height: 2.5; }
+
+.footer-link { color: #94a3b8; text-decoration: none; transition: color 0.2s ease; }
+.footer-link:hover { color: #fff; text-decoration: underline; }
 
 .summary-grid {
     display: grid;
@@ -182,129 +134,28 @@ button {
     align-items: start;
     margin-top: 1.5rem;
 }
+.summary-grid > .shipping-box { grid-column: 1 / -1; width: 100%; }
 
-.summary-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.summary-image img {
-    width: 100%;
-    max-width: 280px;
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.summary-grid > .shipping-box {
-    grid-column: 1 / -1;
-    width: 100%;
-}
+.hero { text-align: center; margin-bottom: 3rem; }
+.hero h2 { font-size: 2.2rem; color: #0f172a; margin-bottom: 0.5rem; }
+.hero img { padding: 1.5rem; }
+.hero p { font-size: 1.2rem; color: #64748b; margin-bottom: 1.5rem; text-align: left; }
+p.hero-price { font-size: 2rem; color: #2563eb; font-weight: 700; margin-bottom: 1rem; text-align: center; }
 
 @media (max-width: 720px) {
-    .summary-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .summary-image {
-        margin-top: 1rem;
-    }
+    .summary-grid { grid-template-columns: 1fr; }
+    .feedback-success .summary-grid { display: flex; flex-direction: column; }
 }
 
-/* Utilitários */
-.error-msg { 
-    color: #ef4444; 
-    font-size: 0.85rem; 
-    display: block;
-    margin-top: 0.5rem; 
-}
 
-.hidden { 
-    display: none !important; 
-}
+/* UTILITÁRIOS */
+.error-msg { color: #ef4444; font-size: 0.85rem; display: block; margin-top: 0.5rem; }
+.hidden { display: none !important; }
+.w-100 { width: 100%; }
+.mb-0 { margin-bottom: 0 !important; }
+.mt-20 { margin-top: 20px; }
+.mt-40 { margin-top: 40px; }
 
-.mt-20 { 
-    margin-top: 20px; 
-}
-
-/* ESTILOS DA SEÇÃO DE SUCESSO (Substitutos de Inline CSS) */
-.feedback-success {
-    background-color: #ecfdf5; 
-    border: 1px solid #a7f3d0; 
-    color: #065f46;
-    padding: 2rem; 
-    border-radius: 8px; 
-}
-
-.feedback-success h4 {
-    font-size: 1.5rem; 
-    margin-bottom: 0.5rem; 
-    text-align: center;
-}
-
-.feedback-success .feedback-subtitle {
-    text-align: center; 
-    margin-bottom: 1.5rem;
-    color: #065f46;
-}
-
-.feedback-success .summary-grid {
-    color: #333; 
-    text-align: left; 
-    margin-bottom: 1.5rem;
-}
-
-.success-card-border {
-    margin-bottom: 0; 
-    padding: 1.5rem; 
-    box-shadow: none; 
-    border: 1px solid #cbd5e1;
-}
-
-.success-card-border h5, 
-.success-shipping-border h5 {
-    margin-bottom: 1rem; 
-    color: #1e293b; 
-    font-size: 1.1rem; 
-    font-weight: bold;
-}
-
-.form-group-summary {
-    margin-bottom: 0.8rem;
-}
-
-.form-group-summary label {
-    font-weight: 600; 
-    font-size: 0.85rem; 
-    color: #475569;
-}
-
-.form-group-summary p {
-    font-size: 0.95rem;
-}
-
-.success-shipping-border {
-    margin-top: 0; 
-    background-color: #fff; 
-    border: 1px solid #3b82f6;
-}
-
-.success-total-row {
-    margin-top: 0.8rem; 
-    font-size: 1.1rem; 
-    border-top: 1px solid #e2e8f0; 
-    padding-top: 0.8rem;
-}
-
-.success-total-row span {
-    font-weight: bold; 
-    color: #2563eb;
-}
-
-.w-100 {
-    width: 100%;
-}
-
-.mb-0 {
-    margin-bottom: 0;
-}
+#shippingValue, #successShippingValue { color: #10b981; }
+.success-total-row { margin-top: 0.8rem; font-size: 1.1rem; border-top: 1px solid #e2e8f0; padding-top: 0.8rem; }
+.success-total-row span, #successTotalValue { font-weight: bold; color: #2563eb; }

@@ -9,7 +9,7 @@ Desenvolver um site simples utilizando HTML, CSS e JavaScript.
 - ~~Um cabeçalho com o nome do projeto.~~ 
 - ~~Uma breve descrição ou slogan.~~ 
 - ~~Um botão de chamada para ação como "Saiba Mais" ou "Inscreva-se".~~ 
-- Uma área de sobre/contato com um formulário simples (nome, email e mensagem).
+- ~~Uma área de sobre/contato com um formulário simples (nome, email e mensagem).~~ 
 - ~~Ação de botão de chamada para ação (por exemplo, exibir uma mensagem de agradecimento ou redirecionar para outra página, utilizando JS, claro).~~
 - ~~Consumo de API como ViaCep. De forma simples.~~ 
 - ~~Escolha uma paleta de cores harmoniosa e fontes apropriadas.~~

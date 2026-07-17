@@ -71,29 +71,28 @@
                 </form>
             </div>
 
-            <!-- Feedback de Sucesso Final com Resumo Dinâmico -->
-            <div id="feedbackMessage" class="feedback-success hidden">
-                <h4>Pedido Confirmado!</h4>
-                <p class="feedback-subtitle">Obrigado pelo seu pedido. Entraremos em contato via e-mail em breve.</p>
+            <!-- Feedback de Sucesso Final (Estrutura Separada e Otimizada) -->
+            <div id="feedbackMessage" class="hidden">
                 
+                <!-- Box de Alerta Verde Superior -->
+                <div class="card feedback-success">
+                    <h4>Pedido Confirmado!</h4>
+                    <p class="feedback-subtitle mb-0">Obrigado pelo seu pedido. Entraremos em contato via e-mail em breve.</p>
+                </div>
+                
+                <!-- Grid de Resumos usando o padrão shipping-box em ambos os lados -->
                 <div class="summary-grid">
-                    <div id="successSummaryContent" class="card success-card-border">
+                    
+                    <!-- Lado Esquerdo: Dados do Comprador -->
+                    <div id="successSummaryContent" class="shipping-box mb-0">
                         <h5>Dados do Comprador</h5>
-                        <div class="form-group-summary">
-                            <label>Nome:</label>
-                            <p id="successName"></p>
-                        </div>
-                        <div class="form-group-summary">
-                            <label>E-mail:</label>
-                            <p id="successEmail"></p>
-                        </div>
-                        <div class="form-group-summary mb-0">
-                            <label>Endereço de Entrega:</label>
-                            <p id="successAddress"></p>
-                        </div>
+                        <p><strong>Nome:</strong> <span id="successName"></span></p>
+                        <p><strong>E-mail:</strong> <span id="successEmail"></span></p>
+                        <p><strong>Endereço de Entrega:</strong> <span id="successAddress"></span></p>
                     </div>
 
-                    <div class="shipping-box success-shipping-border">
+                    <!-- Lado Direito: Valores do Pedido -->
+                    <div class="shipping-box mb-0">
                         <h5>Valores do Pedido</h5>
                         <p><strong>Produto:</strong> <span id="successProductValue"></span></p>
                         <p><strong>Valor do Frete:</strong> <span id="successShippingValue"></span></p>
@@ -102,13 +101,14 @@
                     </div>
                 </div>
 
-                <button id="backToHome" class="btn-secondary w-100">Voltar para a Home</button>
+                <button id="backToHome" class="btn-secondary w-100 mt-40">Voltar para a Home</button>
             </div>
 
         </section>
     </main>
 
     <footer class="footer">
+        <p><a href="index.html" class="footer-link">Home</a> | <a href="contato.html" class="footer-link">Contato</a></p>
         <p>&copy; 2026 Mystery Product. Todos os direitos reservados.</p>
     </footer>
 
