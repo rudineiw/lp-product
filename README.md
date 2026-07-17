@@ -23,3 +23,6 @@ Desenvolver um site simples utilizando HTML, CSS e JavaScript.
 
 ## EXTRAS (OPCIONAIS):
 - Utilize serviços gratuitos como GitHub Pages, Netlify ou Vercel para hospedar a landing page.
+
+## VISUALIZAR CONCLUÍDO
+- Para visualizar e testar acesse <https://rudineiw.github.io/lp-product/>
