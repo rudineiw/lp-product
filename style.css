@@ -1,0 +1,237 @@
+/* Reset e Estrutura Geral permanecem iguais ao código anterior */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header { 
+    background-color: #1e293b; 
+    color: #fff; 
+    padding: 1.5rem; 
+    text-align: center; 
+}
+
+.footer { 
+    background-color: #1e293b; 
+    color: #94a3b8; 
+    text-align: center; 
+    padding: 1rem; 
+    margin-top: auto; 
+}
+
+.container { 
+    max-width: 800px; 
+    margin: 2rem auto; 
+    padding: 0 1rem;
+    width: 100%; 
+}
+
+.hero { 
+    text-align: center; 
+    margin-bottom: 3rem; 
+}
+.hero h2 { 
+    font-size: 2.2rem; 
+    color: #0f172a; 
+    margin-bottom: 0.5rem; 
+}
+.hero img {
+     padding: 1.5rem; 
+    }
+.hero p { 
+    font-size: 1.2rem; 
+    color: #64748b; 
+    margin-bottom: 1.5rem; 
+    text-align: left; 
+}
+p.hero-price { 
+    font-size: 2rem; 
+    color: #2563eb; 
+    font-weight: 700;
+    margin-bottom: 1rem; 
+    text-align: center; 
+}
+
+/* Cards */
+.card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.card h3 { 
+    color: #1e293b; 
+    margin-bottom: 0.5rem; 
+}
+.card-subtitle { 
+    color: #64748b; 
+    font-size: 0.95rem; 
+    margin-bottom: 1.5rem; 
+}
+
+/* Grupo de formulário em linha (CEP + Botão) */
+.inline-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.inline-group input { 
+    flex: 1; 
+}
+
+.form-group { 
+    margin-bottom: 1.2rem; 
+}
+.form-group label { 
+    display: block; 
+    margin-bottom: 0.4rem; 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    color: #475569; 
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+input[readonly] { 
+    background-color: #f1f5f9; 
+    color: #64748b; 
+    cursor: not-allowed; 
+}
+
+/* Botões */
+button {
+    padding: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-primary { 
+    background-color: #2563eb; color: white; width: auto; padding: 0.85rem 2rem; 
+}
+.btn-primary:hover { 
+    background-color: #1d4ed8; 
+}
+
+.btn-secondary { 
+    background-color: #475569; 
+    color: white; 
+    white-space: nowrap; 
+}
+.btn-secondary:hover { 
+    background-color: #334155; 
+}
+
+.btn-success { 
+    background-color: #10b981; 
+    color: white; 
+    width: 100%; 
+    margin-top: 1rem; 
+}
+.btn-success:hover {
+    background-color: #059669; 
+}
+
+/* Caixa de Frete */
+.shipping-box {
+    background-color: #f8fafc;
+    border: 1px dashed #3b82f6;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+}
+.shipping-box h4 { 
+    color: #1e293b; 
+    margin-bottom: 0.5rem;
+ }
+.shipping-box p { 
+    font-size: 0.95rem; 
+    color: #475569; 
+    margin-bottom: 0.4rem; 
+}
+#shippingValue { 
+    color: #10b981; 
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 1.5rem;
+    align-items: start;
+    margin-top: 1.5rem;
+}
+
+.summary-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.summary-image img {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.summary-grid > .shipping-box {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+@media (max-width: 720px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-image {
+        margin-top: 1rem;
+    }
+}
+
+/* Utilitários */
+.error-msg { 
+    color: #ef4444; 
+    font-size: 0.85rem; 
+    display: block;
+    margin-top: 0.5rem; 
+}
+
+.hidden { 
+    display: none !important; 
+}
+
+.mt-20 { 
+    margin-top: 20px; 
+}
+
+#feedbackMessage {
+    background-color: #ecfdf5; 
+    border: 1px solid #a7f3d0; 
+    color: #065f46;
+    padding: 2rem; 
+    border-radius: 8px; 
+    text-align: center;
+}

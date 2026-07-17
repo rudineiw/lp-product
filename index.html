@@ -31,7 +31,7 @@
                 <p class="card-subtitle">Insira seu CEP para verificar a disponibilidade de entrega.</p>
                 
                 <div class="form-group inline-group">
-                    <input type="text" id="cep" maxlength="8" placeholder="Digite seu CEP (apenas números)">
+                    <input type="text" id="cep" maxlength="8" placeholder="Digite seu CEP (apenas números)" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '')">
                     <button id="btnCalcShipping" class="btn-secondary">Calcular</button>
                 </div>
                 <span id="cepError" class="error-msg"></span>
