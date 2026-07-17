@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Verificar se estamos na página de pedido (evita erros se carregar na index)
+    // Verificar se estamos na página de pedido
     const shippingCard = document.getElementById('shippingCard');
     if (!shippingCard) return;
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cep = cepInput.value.replace(/\D/g, '');
         cepError.textContent = '';
         shippingResult.classList.add('hidden');
-        checkoutCard.classList.add('hidden'); // Oculta caso o usuário mude para um CEP inválido depois
+        checkoutCard.classList.add('hidden');
 
         if (cep.length !== 8) {
             cepError.textContent = 'O CEP deve conter exatamente 8 números.';
@@ -59,27 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Preenche automaticamente os dados vindos do ViaCEP
             addressInput.value = data.logradouro || '';
             neighborhoodInput.value = data.bairro || '';
             cityInput.value = `${data.localidade} / ${data.uf}`;
 
-            // Calcula e exibe o frete
             const rule = shippingRules[data.uf] || shippingRules['default'];
             shippingValue.textContent = rule.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             const totalPrice = productPrice + rule.price;
             totalValue.textContent = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             shippingTime.textContent = `${rule.days} dias úteis`;
 
-            // Mostra o resultado da simulação e armazena os valores
             shippingResult.classList.remove('hidden');
             shippingResult.dataset.shippingPrice = rule.price;
             shippingResult.dataset.shippingDays = rule.days;
 
-            // NOVA LÓGICA: Exibe o formulário de dados restantes automaticamente após o CEP válido
             checkoutCard.classList.remove('hidden');
             
-            // Foco inteligente nos campos
             if (!nameInput.value) {
                 nameInput.focus();
             } else if (!addressInput.value) {
@@ -94,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Gatilhos para o cálculo do frete (Clique ou Tecla Enter)
     btnCalcShipping.addEventListener('click', handleShippingCalculation);
     cepInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleShippingCalculation();
@@ -120,16 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
             totalPrice
         };
 
-        // Salva localmente caso precise do dado depois
         localStorage.setItem('mysteryProductOrder', JSON.stringify(orderData));
 
-        // Esconde os cards de preenchimento e exibe a mensagem de sucesso na tela
+        // Injeta dinamicamente os valores nos novos id's do resumo na tela de sucesso
+        document.getElementById('successName').textContent = orderData.name;
+        document.getElementById('successEmail').textContent = orderData.email;
+        document.getElementById('successAddress').textContent = `${orderData.address}, ${orderData.neighborhood} - ${orderData.city}`;
+        
+        document.getElementById('successProductValue').textContent = orderData.productPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById('successShippingValue').textContent = orderData.shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        document.getElementById('successShippingDays').textContent = orderData.shippingDays === 'N/A' ? 'Informação indisponível' : `${orderData.shippingDays} dias úteis`;
+        document.getElementById('successTotalValue').textContent = orderData.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        // Gerenciamento de classes de exibição
         shippingCard.classList.add('hidden');
         checkoutCard.classList.add('hidden');
         feedbackMessage.classList.remove('hidden');
+        
+        feedbackMessage.scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Botão de retorno após a mensagem de sucesso
     document.getElementById('backToHome').addEventListener('click', () => {
         window.location.href = 'index.html';
     });
