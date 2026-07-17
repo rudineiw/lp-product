@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ==========================================
     // LÓGICA DA PÁGINA DE CHECKOUT (PEDIDO)
+    // ==========================================
     const shippingCard = document.getElementById('shippingCard');
     if (shippingCard) {
         const checkoutCard = document.getElementById('checkoutCard');
@@ -131,12 +133,18 @@ document.addEventListener('DOMContentLoaded', () => {
             feedbackMessage.scrollIntoView({ behavior: 'smooth' });
         });
 
-        document.getElementById('backToHome').addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
+        // Evento de clique para retornar do checkout (pedido.html)
+        const backToHome = document.getElementById('backToHome');
+        if (backToHome) {
+            backToHome.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
     }
 
+    // ==========================================
     // LÓGICA DA PÁGINA DE CONTATO
+    // ==========================================
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         const contactCard = document.getElementById('contactCard');
@@ -150,8 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
             contactFeedback.classList.remove('hidden');
         });
 
-        btnBackHome.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
+        // Evento de clique para retornar do contato (contato.html)
+        if (btnBackHome) {
+            btnBackHome.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
     }
 });
