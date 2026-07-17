@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cepError = document.getElementById('cepError');
     const shippingResult = document.getElementById('shippingResult');
     const shippingValue = document.getElementById('shippingValue');
+    const totalValue = document.getElementById('totalValue');
     const shippingTime = document.getElementById('shippingTime');
     const btnProceedToCheckout = document.getElementById('btnProceedToCheckout');
 
@@ -64,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Calcula e exibe o frete
             const rule = shippingRules[data.uf] || shippingRules['default'];
             shippingValue.textContent = rule.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const totalPrice = productPrice + rule.price;
+            totalValue.textContent = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             shippingTime.textContent = `${rule.days} dias úteis`;
 
             // Mostra o resultado da simulação
@@ -122,4 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('mysteryProductOrder', JSON.stringify(orderData));
         window.location.href = 'pedido.html';
     });
+});
+
+// Dados do pedido página pedido.html
+const getOrderData = JSON.parse(localStorage.getItem('mysteryProductOrder') || 'null');
+
+const summaryGrid = document.getElementById('summaryGrid');
+const emptyMessage = document.getElementById('emptyMessage');
+
+if (!getOrderData) {
+    summaryGrid.classList.add('hidden');
+    emptyMessage.classList.remove('hidden');
+} else {
+    document.getElementById('summaryName').textContent = getOrderData.name;
+    document.getElementById('summaryEmail').textContent = getOrderData.email;
+    document.getElementById('summaryAddress').textContent = getOrderData.address;
+    document.getElementById('summaryNeighborhood').textContent = getOrderData.neighborhood;
+    document.getElementById('summaryCity').textContent = getOrderData.city;
+    document.getElementById('summaryProductValue').textContent = getOrderData.productPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById('summaryShippingValue').textContent = getOrderData.shippingPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById('summaryShippingDays').textContent = getOrderData.shippingDays === 'N/A' ? 'Informação indisponível' : `${getOrderData.shippingDays} dias úteis`;
+    document.getElementById('summaryTotalValue').textContent = getOrderData.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+document.getElementById('backToHome').addEventListener('click', () => {
+    window.location.href = 'index.html';
 });

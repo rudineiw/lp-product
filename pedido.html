@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo do Pedido - Mystery Product</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">Mystery Product</h1>
+    </header>
+
+    <main class="container">
+        <!-- Summary Section -->
+        <section class="card" id="orderSummaryCard">
+            <h3>Resumo do Pedido</h3>
+            <p class="card-subtitle">Confira os dados do seu pedido antes da finalização.</p>
+
+            <div id="summaryGrid" class="summary-grid">
+                <div id="summaryContent">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <p id="summaryName"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail:</label>
+                        <p id="summaryEmail"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Endereço:</label>
+                        <p id="summaryAddress"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro:</label>
+                        <p id="summaryNeighborhood"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Cidade / UF:</label>
+                        <p id="summaryCity"></p>
+                    </div>
+                </div>
+
+                <div class="summary-image">
+                    <img src="img/caixa-surpresa.png" alt="Produto: MysteryProduct">
+                </div>
+
+                <div class="shipping-box">
+                    <h4>Valores do Pedido</h4>
+                    <p><strong>Valor do Produto:</strong> <span id="summaryProductValue"></span></p>
+                    <p><strong>Valor do Frete:</strong> <span id="summaryShippingValue"></span></p>
+                    <p><strong>Prazo de Entrega:</strong> <span id="summaryShippingDays"></span></p>
+                    <p><strong>Total:</strong> <span id="summaryTotalValue"></span></p>
+                </div>
+            </div>
+
+            <div id="emptyMessage" class="hidden">
+                <p>Não há pedido registrado. Volte para a página inicial e realize uma simulação de frete antes de finalizar.</p>
+            </div>
+
+            <button id="backToHome" class="btn-secondary mt-20">Voltar para Loja</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Mystery Product. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
